@@ -2,33 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reddit;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 class RedditController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     * Listado de todos los items
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        try {
+            $reddits = Reddit::all();
+            return response()->json(['status' => true, 'reddits' => $reddits ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => false, 'message' => 'Error internal server'], 500);
+        }
     }
 
     /**
@@ -36,8 +27,14 @@ class RedditController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $reddits = Reddit::find( $id );
+            return response()->json(['status' => true, 'reddits' => $reddits ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status' => false, 'message' => 'Error internal server. ' + $id ], 500);
+        }
     }
+
 
     /**
      * Show the form for editing the specified resource.
