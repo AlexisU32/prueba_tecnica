@@ -6,6 +6,8 @@
 
  Este ejercicio esta con un estilo básico pero funcional, cumpliendo con lo solicitado y con una estructura MVC.
 
+ El proyecto está desarrollado con el framework de laravel y en el está la api que muestra los datos de la base de datos.
+
  ## Inicio de la aplicación
 
  Desde la consola ingresando al proyecto se ejecuta el siguiente comando para correr la aplicación.
