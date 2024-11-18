@@ -4,7 +4,7 @@
  En la prueba técnica se muestra una vista con dos contenedores en los cuales se va a listar todos los reddits que 
  provienen del api y en el otro contenedor se va a mostrar el detalle de cada reddit seleccionado.
 
- Este ejercicio esta con un estilo básico pero funcional, cumpliendo con lo solicitado.
+ Este ejercicio esta con un estilo básico pero funcional, cumpliendo con lo solicitado y con una estructura MVC.
 
  ## Inicio de la aplicación
 
