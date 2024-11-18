@@ -17,22 +17,19 @@
         
     </head>
     <body>
-    <!-- Título principal de la página -->
         <h1 class="text-center mt-4">Prueba Técnica - PEDBOX</h1>
 
-        <!-- Contenedor principal con los dos divs alineados horizontalmente -->
         <div class="container d-flex justify-content-center align-items-center" style="height: calc(100vh - 60px);">
-            <!-- Contenedor de los reddits -->
+            
             <div id="reddits-container" class="me-4 p-3 border rounded" style="width: 45%; height: 80%; overflow-y: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);">
                 <h4 class="text-center">Noticias de Reddit</h4>
-                <!-- Aquí se mostrarán las tarjetas de los reddits -->
+                
             </div>
 
-            <!-- Contenedor de los subreddits -->
             <div id="subreddits-container" class="p-3 border rounded" style="width: 45%; height: 80%; overflow-y: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);">
-                <h4 class="text-center">Subreddits</h4>
+                <h4 class="text-center">Detalle de los Reddits</h4>
                 <ul id="subreddits-list" class="list-group">
-                    <!-- Aquí se mostrarán los subreddits -->
+    
                 </ul>
             </div>
         </div>
@@ -58,14 +55,21 @@
                                 card.style.cursor = 'pointer';
                                 card.dataset.id = reddit.id;
                                 card.innerHTML = `
-                                    <div class="card-body" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                                        <h5 class="card-title">${reddit.title}</h5>
-                                        <p class="card-text">${reddit.name}</p>
-                                        <img src="${reddit.image_url}" alt="${reddit.name}" class="img-fluid rounded">
+                                    <div class="card-body p-3" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; border-radius: 8px;">
+                                        <div class="row align-items-center">
+                                            
+                                            <div class="col-4">
+                                                <img src="${ reddit.image_url }" alt="${ reddit.name }" class="img-fluid rounded">
+                                            </div>
+                                            
+                                            <div class="col-8">
+                                                <h5 class="card-title">${ reddit.title }</h5>
+                                                <p class="card-text">${ reddit.name }</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 `;
-
-                                // Añadir el evento de clic para cargar subreddits
+              
                                 card.addEventListener('click', function (e) {
                                     e.preventDefault();
 
@@ -76,12 +80,11 @@
                                         .then(response => {
                                             const subreddits = response.data.reddits;
 
-                                            // Se limpia el contenedor de subreddits
-                                            subredditsContainer.innerHTML = '<h4 class="text-center">Subreddits</h4>';
+                                            subredditsContainer.innerHTML = '<h4 class="text-center">Detalle de los Reddits</h4>';
 
-                                            // Verificar si el reddit existe
+                                            // Se verifica si el reddit existe
                                             if (subreddits) {
-                                                // Crear y mostrar la tarjeta con los datos del reddit seleccionado
+                                                // Se muestran los datos en la card de los detalles
                                                 const redditItem = document.createElement('div');
                                                 redditItem.classList.add('card', 'mb-3');
                                                 redditItem.innerHTML = `
@@ -94,17 +97,16 @@
                                                 `;
                                                 subredditsContainer.appendChild(redditItem);
                                             } else {
-                                                // Si no existe el reddit, mostrar un mensaje de error
                                                 subredditsContainer.innerHTML = '<p>No se encontraron detalles para este Reddit.</p>';
                                             }
                                         })
                                         .catch(error => {
-                                            console.error('Error al cargar los subreddits:', error);
+                                            //console.error('Error al cargar los subreddits:', error);
                                             subredditsContainer.innerHTML = `<p>Error al cargar los subreddits.</p>`;
                                         });
                                 });
 
-                                // Añadir la tarjeta al contenedor de reddits
+                                // Se añade la tarjeta al contenedor
                                 redditsContainer.appendChild(card);
                             });
                         } else {
