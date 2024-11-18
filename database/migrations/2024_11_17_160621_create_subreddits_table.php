@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('reddit_id')->constrained('reddits')->onDelete('cascade'); // Relación con la tabla reddits
             $table->string('display_name');
-            $table->string('header_name')->nullable();
+            $table->string('header_img')->nullable();
             $table->string('banner_img')->nullable();
-            $table->string('submit_text_html');
+            $table->string('submit_text_html')->nullable();
             $table->integer('subscribers')->nullable(); // Número de suscriptores
             $table->timestamps();
         });

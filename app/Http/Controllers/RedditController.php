@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reddit;
+use App\Models\Subreddit;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 class RedditController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 
      * Listado de todos los items
      */
     public function index()
@@ -28,7 +29,7 @@ class RedditController extends Controller
     public function show(string $id)
     {
         try {
-            $reddits = Reddit::find( $id );
+            $reddits = Subreddit::find( $id );
             return response()->json(['status' => true, 'reddits' => $reddits ], 200);
         } catch (\Throwable $th) {
             return response()->json(['status' => false, 'message' => 'Error internal server. ' + $id ], 500);
